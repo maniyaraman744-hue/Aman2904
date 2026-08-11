@@ -1,0 +1,40 @@
+{
+  "project_name": "AWS EC2 + RDS PHP Student Registration Application",
+  "version": "1.0",
+  "author": "Aman Maniyar ",
+  "services": {
+    "Amazon VPC": "Network isolation",
+    "Public Subnet": "Hosts EC2 web application",
+    "Private Subnet": "Hosts RDS database",
+    "Internet Gateway": "Internet connectivity for public subnet",
+    "NAT Gateway": "Outbound connectivity for private resources when required",
+    "Amazon EC2": "Runs Ubuntu, Apache, PHP and application",
+    "Amazon RDS": "Managed MySQL database",
+    "Security Groups": "Control network access",
+    "Apache2": "Web server",
+    "PHP": "Application processing",
+    "MySQL Client": "RDS connection testing",
+    "MobaXterm": "EC2 terminal access"
+  },
+  "application_files": {
+    "index.php": "Displays registration form",
+    "connect.php": "Connects PHP to RDS MySQL",
+    "save.php": "Inserts form data into students table"
+  },
+  "database": {
+    "engine": "MySQL",
+    "database": "studentdb",
+    "table": "students",
+    "columns": [
+      "id",
+      "name",
+      "email"
+    ]
+  },
+  "architecture": {
+    "ec2": "Public Subnet",
+    "rds": "Private Subnet",
+    "rds_public_access": false,
+    "mysql_port": 3306
+  }
+}
