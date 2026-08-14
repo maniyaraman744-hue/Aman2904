@@ -1,329 +1,216 @@
-# ☁️ AWS EC2 + RDS PHP Student Registration Application
+# 🚀 Aman Maniyar — DevOps Portfolio
 
-A PHP student registration application hosted on an Ubuntu Amazon EC2 instance and connected to an Amazon RDS MySQL database in a private subnet.
+Welcome to my personal portfolio repository! 👋
 
-> **Key principle:** The application is publicly reachable, but the database is not directly exposed to the internet.
+This repository contains my personal portfolio website, showcasing my **skills, projects, education, AWS Cloud knowledge, and DevOps experience**.
 
-## 📌 Problem Statement
+---
 
-Build a simple PHP application that collects student information through a browser and stores it in MySQL, while keeping the database private.
+## 🌐 Portfolio
 
-**Goal:** Public web tier on EC2 + private database tier on RDS.
+🔗 **Live Portfolio:**
+Add your GitHub Pages URL here.
 
-## 🏗️ Architecture
+---
 
-```text
-                         INTERNET
-                            |
-                            v
-                    Internet Gateway
-                            |
-                            v
-              ┌────────────────────────────┐
-              │           VPC              │
-              │                            │
-              │  ┌──────────────────────┐  │
-              │  │ EC2                  │  │
-              │  │ Public Subnet        │  │
-              │  │ Ubuntu               │  │
-              │  │ Apache + PHP         │  │
-              │  └──────────┬───────────┘  │
-              │             │              │
-              │        MySQL : 3306        │
-              │             │              │
-              │             v              │
-              │  ┌──────────────────────┐  │
-              │  │ Amazon RDS MySQL     │  │
-              │  │ Private Subnet       │  │
-              │  │ studentdb            │  │
-              │  │ students             │  │
-              │  └──────────────────────┘  │
-              └────────────────────────────┘
-```
+## 👨‍💻 About Me
 
-**Traffic path:** `User → EC2 → RDS`
+Hi, I'm **Aman Maniyar**, a **BCA Final-Year Student** and **AWS Cloud & DevOps trainee**.
 
-## 🧰 Services Used
+I have hands-on knowledge of AWS Cloud and DevOps through practical projects and training. I am familiar with AWS services, Linux, Git, GitHub, Jenkins, Kubernetes, CI/CD concepts, and web technologies.
 
-| Service | Purpose |
-|---|---|
-| **Amazon VPC** | Creates the isolated network for the project. |
-| **Public Subnet** | Hosts EC2 because the web application must be reachable. |
-| **Private Subnet** | Hosts RDS so the database is not directly exposed to the internet. |
-| **Internet Gateway** | Provides internet connectivity for the public subnet. |
-| **NAT Gateway** | Provides outbound internet access to private resources when required. |
-| **Amazon EC2** | Runs Ubuntu, Apache, PHP, and the application. |
-| **Amazon RDS for MySQL** | Provides the managed MySQL database. |
-| **EC2 Security Group** | Controls traffic reaching the web server. |
-| **RDS Security Group** | Controls MySQL access; allow port 3306 from the EC2 security group. |
-| **Apache2** | Serves the PHP application. |
-| **PHP** | Processes the application and communicates with MySQL. |
-| **MySQL Client** | Tests the RDS connection from EC2. |
-| **MobaXterm** | Provides terminal access to EC2. |
+I am looking for an **entry-level AWS Cloud or DevOps Engineer role** where I can apply my technical skills, learn new technologies, and contribute to organizational goals.
 
-## ⚙️ Setup Steps
+---
 
-### 1. VPC & Subnets
+## 📄 My Resume
 
-Create a VPC with a public subnet and private subnet. Attach an Internet Gateway to the VPC and use a NAT Gateway when private resources require outbound internet access.
+📥 **[View / Download My Resume](./resume.pdf)**
 
-**Why?** The VPC separates the application network from other networks, while public/private subnets separate the web and database tiers.
+My resume includes my education, technical skills, AWS Cloud & DevOps projects, and professional summary.
 
-### 2. EC2 Instance
+---
 
-Launch Ubuntu EC2 in the public subnet.
+## 🛠️ Technical Skills
 
-**Why?** EC2 runs the web server and PHP application that users access through the EC2 public IP.
+### ☁️ AWS Cloud
 
-### 3. RDS MySQL
+* Amazon EC2
+* Amazon VPC
+* Amazon S3
+* IAM
+* Amazon RDS
+* EFS
+* CloudWatch
+* CloudFront
+* Auto Scaling Groups
+* Application Load Balancer (ALB)
+* Target Groups
+* AMI
+* Security Groups
+* Route Tables
+* Internet Gateway
+* SNS
+* SQS
+* SES
 
-Create RDS MySQL in the private subnet.
+### 🔄 DevOps & Automation
 
-**Why?** RDS stores the application data and should not be directly reachable from the public internet.
+* Git
+* GitHub
+* Jenkins
+* Kubernetes
+* CI/CD Concepts
+* Shell Scripting — Basic
 
-### 4. Security Groups
+### 🐧 Operating Systems
 
-EC2 should allow required web traffic such as HTTP port 80.
+* Linux
+* Ubuntu
+* Windows
 
-RDS should allow MySQL port 3306 **from the EC2 security group**, rather than from the whole internet.
+### 💻 Programming Languages
 
-### 5. Install Software on EC2
+* C
+* C++
+* Python — Basics
 
-```bash
-sudo apt update
-sudo apt install apache2 -y
-sudo apt install php php-mysql libapache2-mod-php -y
-sudo apt install mysql-client -y
-sudo systemctl restart apache2
-```
+### 🌐 Web Technologies
 
-### 6. Connect to RDS
+* HTML
+* CSS
+* PHP
+* Apache HTTP Server
 
-```bash
-mysql -h YOUR_RDS_ENDPOINT -u admin -p
-```
+### 🧠 Other Skills
 
-Create the database:
+* Computer Fundamentals
+* Problem Solving
+* Communication Skills
+* Teamwork
+* Time Management
+* Adaptability
 
-```sql
-CREATE DATABASE studentdb;
-USE studentdb;
+---
 
-CREATE TABLE students(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100),
-    email VARCHAR(100)
-);
-```
+## 🚀 Projects
 
-## 🌐 PHP Application
+### 1. ☁️ AWS Cloud Infrastructure & DevOps Projects
 
-Apache serves files from:
+Hands-on AWS Cloud and DevOps projects involving:
 
-```text
-/var/www/html
-```
+* Created and configured AWS EC2 instances for application hosting and server management.
+* Designed AWS VPC environments with public and private subnets.
+* Configured route tables, Internet Gateway, and security groups.
+* Worked with AWS RDS for database deployment and connectivity.
+* Practiced Auto Scaling Groups and Application Load Balancer concepts.
+* Used Amazon S3 for cloud storage.
+* Explored CloudFront for content delivery.
+* Worked with IAM users, roles, and permissions.
+* Used CloudWatch for monitoring AWS resources.
+* Practiced Linux administration.
+* Used Git and GitHub for version control.
+* Practiced Jenkins automation and CI/CD concepts.
+* Learned basic Kubernetes concepts.
 
-```bash
-cd /var/www/html
-```
+---
 
-### 1. index.php
+### 2. 🌐 Personal Portfolio Project
 
-**Purpose:** Main page. Displays the registration form and sends the submitted data to `save.php`.
+**GitHub Repository:**
+🔗 https://github.com/maniyaraman744-hue/Aman2904
 
-```php
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Student Registration</title>
-</head>
-<body>
+A personal portfolio project created to showcase my:
 
-<h2>Student Registration Form</h2>
+* Technical skills
+* AWS & DevOps knowledge
+* Projects
+* Education
+* Professional information
+* Contact details
 
-<form action="save.php" method="POST">
-    <label>Name:</label>
-    <input type="text" name="name" required>
+**Technologies Used:**
 
-    <br><br>
+`HTML` • `CSS` • `JavaScript` • `Git` • `GitHub`
 
-    <label>Email:</label>
-    <input type="email" name="email" required>
+---
 
-    <br><br>
+## 🎓 Education
 
-    <input type="submit" value="Register">
-</form>
+### Bachelor of Computer Applications (BCA)
 
-</body>
-</html>
-```
+**Saketa Degree College, Dilsukhnagar**
+2023 – Present
+Affiliated to **Osmania University**
 
-### 2. connect.php
+### Intermediate — General Science
 
-**Purpose:** Creates the PHP-to-RDS MySQL connection.
+**Chhatrapati Shivajiraje Mahavidyalaya, Udgir**
+Completed: 2023
 
-```php
-<?php
+### 10th Class
 
-$host = "YOUR_RDS_ENDPOINT";
-$user = "admin";
-$password = "YOUR_RDS_PASSWORD";
-$db = "studentdb";
+**Jamhoor High School, Udgir**
+Completed: 2021
 
-$conn = mysqli_connect($host, $user, $password, $db);
+---
 
-if (!$conn) {
-    die("Connection Failed");
-}
+## 📈 Currently Learning
 
-?>
-```
+* Advanced AWS
+* DevOps
+* Jenkins CI/CD
+* Docker
+* Kubernetes
+* Linux Administration
+* Cloud Automation
+* Infrastructure as Code
 
-### 3. save.php
+---
 
-**Purpose:** Receives form data and inserts it into the RDS `students` table.
+## 📫 Connect With Me
 
-```php
-<?php
+📧 **Email:**
+[maniyaramn744@gmail.com](mailto:maniyaramn744@gmail.com)
 
-include "connect.php";
+💼 **LinkedIn:**
+https://www.linkedin.com/in/aman-maniyar-693583401/
 
-$name = $_POST['name'];
-$email = $_POST['email'];
+🐙 **GitHub:**
+https://github.com/maniyaraman744-hue
 
-$sql = "INSERT INTO students(name, email)
-        VALUES('$name', '$email')";
+---
 
-if (mysqli_query($conn, $sql)) {
-    echo "<h2>Student Registered Successfully</h2>";
-} else {
-    echo "Error: " . mysqli_error($conn);
-}
-
-?>
-```
-
-## 🔄 Application Flow
+## 📂 Repository Structure
 
 ```text
-Browser
-   |
-   v
-index.php
-   |
-   | POST name + email
-   v
-save.php
-   |
-   | include
-   v
-connect.php
-   |
-   | MySQL : 3306
-   v
-Amazon RDS
-   |
-   v
-studentdb.students
+portfolio/
+│
+├── index.html
+├── style.css
+├── script.js
+├── resume.pdf
+├── images/
+│   └── ...
+└── README.md
 ```
 
-## 🧪 Testing
+---
 
-Open:
+## ⭐ Support
 
-```text
-http://YOUR_EC2_PUBLIC_IP
-```
+If you like my portfolio or find my projects useful, please consider giving this repository a ⭐ **Star**.
 
-Submit a student record.
+---
 
-Then verify:
+## 📌 Career Goal
 
-```bash
-mysql -h YOUR_RDS_ENDPOINT -u admin -p
-```
+I am seeking an **entry-level AWS Cloud / DevOps Engineer opportunity** where I can use my technical knowledge, develop my skills, and contribute to real-world projects.
 
-```sql
-USE studentdb;
-SELECT * FROM students;
-```
+---
 
-## 🔐 Security Design
+### 🚀 Aman Maniyar
 
-Users access:
+**BCA Final-Year Student | AWS Cloud & DevOps | Entry-Level IT Candidate**
 
-```text
-Internet → EC2 → PHP Application
-```
-
-Users should not access:
-
-```text
-Internet → RDS
-```
-
-Recommended RDS rule:
-
-```text
-Type: MySQL/Aurora
-Port: 3306
-Source: EC2 Security Group
-```
-
-Avoid using `0.0.0.0/0` as the RDS MySQL source.
-
-## 🧠 Key Learnings
-
-- VPC provides network isolation.
-- Public subnet is used for the internet-facing web tier.
-- Private subnet is used for the database tier.
-- EC2 runs the application.
-- Apache serves PHP.
-- PHP connects to RDS.
-- Security groups control EC2-to-RDS traffic.
-- RDS stores the application data.
-
-## 🧹 Cleanup
-
-After testing, remove resources you no longer need to avoid unnecessary AWS charges, especially RDS and NAT Gateway resources.
-
-## ⚠️ GitHub Security
-
-Never upload:
-
-- RDS passwords
-- AWS access keys
-- Secret keys
-- `.pem` files
-- `.env` files containing secrets
-
-Use placeholders in GitHub:
-
-```php
-$host = "YOUR_RDS_ENDPOINT";
-$password = "YOUR_RDS_PASSWORD";
-```
-
-## 📁 Repository Structure
-
-```text
-AWS-EC2-RDS-PHP-Application/
-├── README.md
-├── project.json
-├── index.php
-├── connect.php
-├── save.php
-└── .gitignore
-```
-
-## 📄 Result
-
-The PHP application is hosted on EC2 and stores student records in Amazon RDS MySQL located in a private subnet.
-
-## 👨‍💻 Author
-
-**Aman Maniyar**
-
-BCA Graduate | AWS / Cloud & DevOps Fresher
+> *Learning today, building tomorrow.* 🚀
